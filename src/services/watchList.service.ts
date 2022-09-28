@@ -27,7 +27,11 @@ const addDocToWatchList = async (obj: any) => {
   return { success: false };
 };
 
-const watchListMovies = async (uid: string, search: string = "") => {
+const watchListMovies = async (
+  uid: string,
+  search: string = "",
+  sortType: string = "asc"
+) => {
   let movies: any[] = [];
 
   const AllWatchListByQuery = query(watchListRef, where("uid", "==", uid));
@@ -37,8 +41,14 @@ const watchListMovies = async (uid: string, search: string = "") => {
     return doc.data().movie_id;
   });
 
-  if (AllWatchIds.length)
-    movies = await getMoviesFilter("", search, AllWatchIds);
+  if (AllWatchIds.length) {
+    movies = (await getMoviesFilter("", search, AllWatchIds, sortType)).sort(
+      (a: any, b: any) =>
+        sortType === "asc"
+          ? a.published_at - b.published_at
+          : b.published_at - a.published_at
+    );
+  }
 
   return movies;
 };

@@ -10,6 +10,7 @@ export const GenrePage = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState();
+  const [yearSort, setYearSort] = useState("asc");
 
   const query = useQuery();
   const route: any = useRouteMatch();
@@ -17,11 +18,11 @@ export const GenrePage = () => {
   useEffect(() => {
     (async () => {
       const movies: any =
-        (await getMoviesFilter(route.params.id, search)) || [];
+        (await getMoviesFilter(route.params.id, search, [], yearSort)) || [];
       setIsLoading(false);
       setMovies(movies);
     })();
-  }, [route.params.id, search]);
+  }, [route.params.id, search, yearSort]);
 
   return (
     <div className="genre">
@@ -36,8 +37,15 @@ export const GenrePage = () => {
                 placeholder="Search..."
                 onChange={(e: any) => setSearch(e.target.value)}
               />
-              <select className="form-select ms-3">
-                <option value="">Sorted By year</option>
+              <select
+                className="form-select ms-3"
+                onChange={(e) => {
+                  if (e.target.value) setYearSort(e.target.value);
+                }}
+              >
+                <option value="">Sorted By Year</option>
+                <option value="desc">Desc</option>
+                <option value="asc">Asc</option>
               </select>
             </div>
           )}

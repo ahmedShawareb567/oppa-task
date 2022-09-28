@@ -11,18 +11,19 @@ import { RootState } from "../../store";
 export const WatchListPage = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [yearSort, setYearSort] = useState("asc");
   const [isLoading, setIsLoading] = useState(true);
 
   const user: any = useSelector((state: RootState) => state.Auth.user);
 
   useEffect(() => {
     (async () => {
-      setMovies([]);
-      const movies: any = (await watchListMovies(user.uid, search)) || [];
+      const movies: any =
+        (await watchListMovies(user.uid, search, yearSort)) || [];
       setIsLoading(false);
       setMovies(movies);
     })();
-  }, [search, user.uid]);
+  }, [search, user.uid, yearSort]);
 
   return (
     <div className="watchList">
@@ -37,8 +38,15 @@ export const WatchListPage = () => {
                 placeholder="Search..."
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <select className="form-select ms-3">
-                <option value="">Sorted By year</option>
+              <select
+                className="form-select ms-3"
+                onChange={(e) => {
+                  if (e.target.value) setYearSort(e.target.value);
+                }}
+              >
+                <option value="">Sorted By Year</option>
+                <option value="desc">Desc</option>
+                <option value="asc">Asc</option>
               </select>
             </div>
           )}

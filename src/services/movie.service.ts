@@ -7,6 +7,8 @@ import {
   getDoc,
   doc,
   documentId,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 
 const movieRef = collection($db, "movies");
@@ -14,15 +16,23 @@ const movieRef = collection($db, "movies");
 const getMoviesFilter = async (
   id: string,
   search: string = "",
-  watchListIds: string[] = []
+  watchListIds: string[] = [],
+  sortType: any = "asc",
+  limitOfItems = 8
 ) => {
   const filterArr = [];
+
   if (id) filterArr.push(where("genre_id", "==", id));
   if (search) filterArr.push(where("title", "==", search));
-  if (watchListIds.length)
-    filterArr.push(where(documentId(), "in", watchListIds));
 
-  const moviesQuery = query(movieRef, ...filterArr);
+  if (watchListIds.length) {
+    filterArr.push(orderBy(documentId()));
+    filterArr.push(where(documentId(), "in", watchListIds));
+  } else {
+    filterArr.push(orderBy("published_at", sortType));
+  }
+
+  const moviesQuery = query(movieRef, ...filterArr, limit(8));
   const movies = await getDocs(moviesQuery);
 
   return movies.docs.map((doc) => {
