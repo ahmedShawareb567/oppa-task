@@ -1,0 +1,95 @@
+.appShimmer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  overflow: hidden;
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+  &-content {
+    height: rem(260px);
+  }
+  &-item {
+    &:nth-child(2),
+    &:last-child {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+  }
+  &-box {
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    border: 0.15rem solid #262626;
+    padding: 2rem;
+    overflow: hidden;
+    @include media-breakpoint-down(sm) {
+      padding: 2rem 1rem;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0rem;
+      right: 0rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: linear-gradient(
+        90deg,
+        rgba(1, 159, 254, 0),
+        rgba(1, 159, 254, 0.2) 20%,
+        rgba(1, 159, 254, 0.5) 30%,
+        rgba(1, 159, 254, 0)
+      );
+      transform: translateX(-100%) rotate(0deg);
+      animation: gradient 1600ms infinite;
+      animation-timing-function: cubic-bezier(0.38, 0.55, 0.34, 0.95);
+    }
+  }
+  &-circle {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: #262626;
+    @include media-breakpoint-down(md) {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+  &-rect {
+    padding-right: 2rem;
+    width: 15rem;
+    max-width: 100%;
+    @include media-breakpoint-down(md) {
+      width: 10rem;
+    }
+  }
+  &-line {
+    position: relative;
+    width: 50%;
+    height: 2.5rem;
+    background-color: #262626;
+    border-radius: 1rem;
+    &:last-child {
+      width: 100%;
+      margin-top: 1rem;
+      height: 2rem;
+    }
+  }
+  &-footer {
+    margin-top: 2rem;
+    .appShimmer {
+      &-line {
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+@keyframes gradient {
+  100% {
+    transform: translateX(100%) rotate(0deg);
+  }
+}

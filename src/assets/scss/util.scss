@@ -1,0 +1,200 @@
+// Spacing
+$sizeUnit: rem;
+$marginKey: "m";
+$paddingKey: "p";
+$separator: "-";
+$sizes: (
+  ("none", 0),
+  ("xxs", 0.125),
+  ("xs", 0.25),
+  ("sm", 0.5),
+  ("md", 1),
+  ("lg", 2),
+  ("xl", 4),
+  ("xxl", 7)
+);
+$positions: (("t", "top"), ("r", "right"), ("b", "bottom"), ("l", "left"));
+
+@function sizeValue($key, $value) {
+  @return if($key== "none", 0, $value + $sizeUnit);
+}
+
+@each $size in $sizes {
+  $sizeKey: nth($size, 1);
+  $sizeValue: nth($size, 2);
+
+  .#{$marginKey}#{$separator}#{$sizeKey} {
+    margin: sizeValue($sizeKey, $sizeValue) !important;
+  }
+
+  .#{$paddingKey}#{$separator}#{$sizeKey} {
+    padding: sizeValue($sizeKey, $sizeValue) !important;
+  }
+
+  @each $position in $positions {
+    $posKey: nth($position, 1);
+    $posValue: nth($position, 2);
+
+    .#{$marginKey}#{$posKey}#{$separator}#{$sizeKey} {
+      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+
+    .#{$paddingKey}#{$posKey}#{$separator}#{$sizeKey} {
+      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+    }
+  }
+}
+
+.iResponsive {
+  max-width: 100%;
+  display: block;
+}
+
+.max {
+  &-lg {
+    max-width: 1000px;
+  }
+  &-md {
+    max-width: 800px;
+  }
+  &-sm {
+    max-width: 520px;
+  }
+  &-xs {
+    max-width: 240px;
+  }
+  &-ts {
+    max-width: 100px;
+  }
+}
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+.img-max {
+  max-width: 100%;
+  height: auto;
+}
+.fs {
+  &-xxl {
+    font-size: rem(40px) !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(26px) !important;
+    }
+  }
+  &-xl {
+    font-size: rem(30px) !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(25px) !important;
+    }
+  }
+
+  &-lg {
+    font-size: rem(28px) !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(18px) !important;
+    }
+  }
+  &-md {
+    font-size: rem(20px) !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(16px) !important;
+    }
+  }
+  &-sm {
+    font-size: rem(16px) !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(15px) !important;
+    }
+  }
+  &-xs {
+    font-size: 14px !important;
+    @include media-breakpoint-down(md) {
+      font-size: rem(13px) !important;
+    }
+  }
+  &-xxs {
+    font-size: 12px !important;
+  }
+}
+
+.fw {
+  &-light {
+    font-weight: 300;
+  }
+  &-normal {
+    font-weight: 400;
+  }
+  &-medium {
+    font-weight: 500;
+  }
+  &-semiBold {
+    font-weight: 600;
+  }
+  &-bold {
+    font-weight: 700;
+  }
+  &-extraBold {
+    font-weight: 800;
+  }
+}
+
+.lh {
+  &-lg {
+    line-height: rem(35px);
+    @include media-breakpoint-down(md) {
+      line-height: rem(30px);
+    }
+  }
+}
+
+.scrollBar {
+  scrollbar-color: $primary rgba(0, 0, 0, 0.05);
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $secondary;
+    border-radius: 0.5rem !important;
+  }
+}
+
+.title {
+  position: relative;
+  padding: 1.5rem 0rem 1rem 0rem;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    background-color: $primary;
+    width: rem(100px);
+    height: rem(10px);
+  }
+}
+
+.text {
+  &-gray {
+    &-400 {
+      color: $gray-400;
+    }
+    &-500 {
+      color: $gray-500;
+    }
+    &-600 {
+      color: $gray-600;
+    }
+  }
+  &-underLine {
+    text-decoration: underline;
+  }
+  &-lineThrough {
+    text-decoration: line-through;
+  }
+}

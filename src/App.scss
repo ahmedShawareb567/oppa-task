@@ -1,0 +1,24 @@
+.auth {
+  top: 0rem;
+  left: 0rem;
+  height: 100vh;
+  @media (max-width: 767px) {
+    height: auto;
+    margin-top: 3rem;
+  }
+  &-form {
+    border: 0.1rem solid $primary;
+    padding: 6rem 8rem;
+    margin: 0rem auto;
+    @media (max-width: 991px) {
+      padding: 3rem 2rem;
+    }
+  }
+}
+
+.homeLink {
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}

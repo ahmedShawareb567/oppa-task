@@ -1,0 +1,122 @@
+// $enable-shadows: true;
+$is-rtl: false;
+$rfs-breakpoint: 1300px;
+$rfs-base-value: 30px;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+$theme-colors: (
+  "primary": #000,
+  "secondary": #fff100,
+  "danger": #f11133,
+  "warning": #ff9e18,
+  "success": #00ffd1,
+  "info": #00bcd529,
+  "dark": #231f20,
+);
+
+$primary: #000;
+$secondary: #fff100;
+$danger: #f11133;
+$warning: #ff9e18;
+$success: #00ffd1;
+$info: #00bcd529;
+$dark: #000;
+$body-bg: #fff;
+$body-color: #1d1d1b;
+$gray-300: #ececec;
+$gray-400: #d8d8d8;
+$gray-500: #a7a9ac;
+$gray-600: #575756;
+$gray-700: #3c3c3b;
+$border-radius: 3rem;
+$gray-300: #f9f9f9;
+$input-border-color: transparent;
+$input-bg: #fff;
+$link-color: inherit;
+$link-decoration: none;
+$link-hover-decoration: none;
+$link-hover-color: $primary;
+$headings-font-weight: 700;
+$btn-font-weight: 700;
+$font-weight-bolder: 700;
+$font-family-base: "Roboto", sans-serif;
+
+$grid-gutter-width: 1.875rem;
+$box-shadow: 0rem 0rem 0rem 0.25rem rgba(84, 46, 144, 0.2);
+$box-shadow-secondary: 0rem 0rem 0rem 0.25rem rgba(255, 242, 0, 0.2);
+$table-radius: 0.3rem;
+$input-padding-y: 0.6rem;
+
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/transitions";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
+// Custom varbiables
+$border-radius-xl: 4px;
+$box-shadow-lg: 0px 0px 15px 6px rgba(0, 0, 0, 0.1);
+$box-shadow-xl: 0px 22px 33px rgba(0, 0, 0, 0.04);
+$font-weight-medium: 500;
+$font-weight-semi: 600;
+$font-family-heading: "Roboto", sans-serif;
+
+@function aspectRatio($width, $height) {
+  @return ($height / $width) * 100%;
+}
+
+@function rem($size) {
+  @return $size / 16px * 1rem;
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: lighten($primary, 10%);
+    outline: 0 solid $gray-400;
+    border-radius: 20em;
+
+    &:hover {
+      background: $primary;
+    }
+  }
+}

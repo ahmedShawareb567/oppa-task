@@ -1,0 +1,49 @@
+.btn {
+  display: inline-block;
+  padding: rem(10px) rem(20px);
+  text-align: center;
+  font-size: rem(16px);
+  font-weight: 600;
+  background-color: $primary;
+  color: #fff;
+  border-radius: 0rem;
+  border: 0.15rem solid transparent;
+  transition: all 0.15s ease-in-out;
+  &:active {
+    box-shadow: $box-shadow;
+  }
+  &:hover {
+    color: $primary;
+    background-color: transparent;
+  }
+  &-white {
+    background-color: $white;
+    color: $dark;
+    border-color: $white;
+    &:hover {
+      background-color: transparent;
+      color: $white;
+    }
+  }
+  &-primary {
+    border-color: $primary;
+    background-color: $primary;
+    &-o {
+      color: $primary;
+      border-color: $primary;
+      background-color: transparent;
+      &:hover {
+        background-color: $primary;
+        color: $white !important;
+      }
+    }
+  }
+  &-transparent {
+    background-color: transparent;
+    &:hover,
+    &:active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.appLoading {
+  position: fixed;
+  top: 1rem;
+  left: calc(50% - 1.75rem);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: $danger;
+  span {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 0.15rem solid $white;
+    border-bottom-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+
+  &.sm {
+    position: relative;
+    top: 0rem;
+    left: auto;
+    background-color: transparent;
+    span {
+      border-color: $danger;
+      border-bottom-color: $gray-400;
+    }
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
