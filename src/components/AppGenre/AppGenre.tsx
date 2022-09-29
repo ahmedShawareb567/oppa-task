@@ -2,8 +2,8 @@ import { AppCard } from "../AppCard/AppCard";
 import { Genre, Movie } from "../../types/index";
 import { getMoviesFilter } from "../../services/movie.service";
 import { useEffect, useState } from "react";
-import { AppLoading } from "../AppLoading/AppLoading";
 import { Link } from "react-router-dom";
+import { AppShimmer } from "../AppShimmer/AppShimmer";
 
 interface AppGenreInterface {
   genre: Genre;
@@ -21,14 +21,6 @@ export const AppGenre = ({ genre }: AppGenreInterface) => {
     })();
   }, [genre.id]);
 
-  if (isLoading) {
-    return (
-      <div className="container">
-        <AppLoading size="sm" />
-      </div>
-    );
-  }
-
   return (
     <div className="genre">
       <div className="container">
@@ -38,17 +30,23 @@ export const AppGenre = ({ genre }: AppGenreInterface) => {
         >
           {genre.name}
         </Link>
-        {movies.length === 0 && <p>No Movies Exists</p>}
-        {movies.length > 0 && (
-          <div className="row">
-            {movies.map((item: Movie) => (
-              <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
-                <div className="mb-md" key={item.id}>
-                  <AppCard movie={item} />
-                </div>
+        {isLoading && <AppShimmer />}
+        {!isLoading && (
+          <>
+            {movies.length > 0 ? (
+              <div className="row">
+                {movies.map((item: Movie) => (
+                  <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
+                    <div className="mb-md" key={item.id}>
+                      <AppCard movie={item} />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            ) : (
+              <p>No Movies Exists</p>
+            )}
+          </>
         )}
       </div>
     </div>

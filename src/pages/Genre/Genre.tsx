@@ -5,6 +5,7 @@ import { useRouteMatch } from "react-router-dom";
 import { AppLoading } from "../../components/AppLoading/AppLoading";
 import { Movie } from "../../types";
 import { AppCard } from "../../components/AppCard/AppCard";
+import { AppShimmer } from "../../components/AppShimmer/AppShimmer";
 
 export const GenrePage = () => {
   const [movies, setMovies] = useState([]);
@@ -51,11 +52,7 @@ export const GenrePage = () => {
           )}
           {isLoading && <AppLoading size="sm" />}
         </div>
-        {isLoading && (
-          <div className="container">
-            <AppLoading size="sm" />
-          </div>
-        )}
+        {isLoading && <AppShimmer />}
         {!isLoading && (
           <>
             {movies.length > 0 ? (

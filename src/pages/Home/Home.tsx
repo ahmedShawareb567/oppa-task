@@ -4,7 +4,7 @@ import { getGenres } from "../../services/genre.service";
 import { useEffect, useState } from "react";
 import { AppGenre } from "../../components/AppGenre/AppGenre";
 import { Genre } from "../../types";
-import { AppLoading } from "../../components/AppLoading/AppLoading";
+import { AppShimmer } from "../../components/AppShimmer/AppShimmer";
 
 export const HomePage = () => {
   const [genres, setGenres] = useState([]);
@@ -21,7 +21,7 @@ export const HomePage = () => {
   if (isLoading) {
     return (
       <div className="container pt-xl">
-        <AppLoading size="sm" />
+        <AppShimmer />
       </div>
     );
   }

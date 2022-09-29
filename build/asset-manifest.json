@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/oppa-task/static/css/main.3cf0cd9d.css",
-    "main.js": "/oppa-task/static/js/main.8154b0ce.js",
+    "main.css": "/oppa-task/static/css/main.1994a47b.css",
+    "main.js": "/oppa-task/static/js/main.f747a909.js",
     "static/js/787.7926f492.chunk.js": "/oppa-task/static/js/787.7926f492.chunk.js",
     "static/media/sprites.svg": "/oppa-task/static/media/sprites.064f5b259d34973b44c274613faa532d.svg",
     "index.html": "/oppa-task/index.html",
-    "main.3cf0cd9d.css.map": "/oppa-task/static/css/main.3cf0cd9d.css.map",
-    "main.8154b0ce.js.map": "/oppa-task/static/js/main.8154b0ce.js.map",
+    "main.1994a47b.css.map": "/oppa-task/static/css/main.1994a47b.css.map",
+    "main.f747a909.js.map": "/oppa-task/static/js/main.f747a909.js.map",
     "787.7926f492.chunk.js.map": "/oppa-task/static/js/787.7926f492.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3cf0cd9d.css",
-    "static/js/main.8154b0ce.js"
+    "static/css/main.1994a47b.css",
+    "static/js/main.f747a909.js"
   ]
 }

@@ -7,12 +7,12 @@ import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import { Movie } from "../../types";
 import { AppCard } from "../../components/AppCard/AppCard";
 import { SvgIcon } from "../../components/SvgIcon/SvgIcon";
-import { AppLoading } from "../../components/AppLoading/AppLoading";
 
 import { addDocToWatchList } from "../../services/watchList.service";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { RootState } from "../../store";
+import { AppShimmer } from "../../components/AppShimmer/AppShimmer";
 
 export const MoviePage = () => {
   const route: any = useRouteMatch();
@@ -70,7 +70,7 @@ export const MoviePage = () => {
   if (isLoading) {
     return (
       <div className="container pt-xl">
-        <AppLoading size="sm" />
+        <AppShimmer />
       </div>
     );
   }
@@ -99,10 +99,11 @@ export const MoviePage = () => {
             <p className="fs-sm pt-lg">{movie?.description}</p>
           </div>
         </div>
-        {relatedLoading && <AppLoading size="sm" />}
+        
+        <h3 className="pt-xl fs-xxl pb-lg">Related Movies</h3>
+        {relatedLoading && <AppShimmer />}
         {!relatedLoading && (
           <>
-            <h3 className="pt-xl fs-xxl pb-lg">Related Movies</h3>
             {relatedMovies.length > 0 && (
               <div className="row">
                 {relatedMovies.map((item: Movie) => (

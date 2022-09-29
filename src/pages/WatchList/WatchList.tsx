@@ -7,6 +7,7 @@ import { Movie } from "../../types";
 import { watchListMovies } from "../../services/watchList.service";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { AppShimmer } from "../../components/AppShimmer/AppShimmer";
 
 export const WatchListPage = () => {
   const [movies, setMovies] = useState([]);
@@ -53,11 +54,7 @@ export const WatchListPage = () => {
           {isLoading && <AppLoading size="sm" />}
         </div>
 
-        {isLoading && (
-          <div className="container">
-            <AppLoading size="sm" />
-          </div>
-        )}
+        {isLoading && <AppShimmer />}
         {!isLoading && (
           <>
             {movies.length > 0 ? (
